@@ -29,9 +29,6 @@ public final class Patbot {
                 .addEventListener(new ListenerAdapter() {
                     @Override
                     public void onGuildMessageReceived(final GuildMessageReceivedEvent event) {
-                        if(event.getAuthor().isBot()) {
-                            return;
-                        }
                         if(event.getChannel().getId().equalsIgnoreCase(CHANNEL)) {
                             if(!event.getMessage().getContentRaw().equalsIgnoreCase("pat me")) {
                                 if(!ALLOWED_IDS.contains(event.getAuthor().getId())) {
@@ -45,9 +42,6 @@ public final class Patbot {
                     
                     @Override
                     public void onGuildMessageUpdate(final GuildMessageUpdateEvent event) {
-                        if(event.getAuthor().isBot()) {
-                            return;
-                        }
                         if(event.getChannel().getId().equalsIgnoreCase(CHANNEL)) {
                             if(!event.getMessage().getContentRaw().equalsIgnoreCase("pat me")) {
                                 if(!ALLOWED_IDS.contains(event.getAuthor().getId())) {
