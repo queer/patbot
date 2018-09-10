@@ -31,9 +31,10 @@ public final class Patbot {
                             return;
                         }
                         if(event.getChannel().getId().equalsIgnoreCase(CHANNEL)) {
-                            if(!event.getMessage().getContentRaw().equalsIgnoreCase("pat me")
-                                    && !event.getMember().hasPermission(Permission.ADMINISTRATOR)) {
-                                event.getMessage().delete().queue();
+                            if(!event.getMessage().getContentRaw().equalsIgnoreCase("pat me")) {
+                                if(!event.getMember().hasPermission(Permission.ADMINISTRATOR)) {
+                                    event.getMessage().delete().queue();
+                                }
                             } else {
                                 event.getChannel().sendMessage(event.getAuthor().getAsMention() + " *pats*").queue();
                             }
@@ -46,9 +47,10 @@ public final class Patbot {
                             return;
                         }
                         if(event.getChannel().getId().equalsIgnoreCase(CHANNEL)) {
-                            if(!event.getMessage().getContentRaw().equalsIgnoreCase("pat me")
-                                    && !event.getMember().hasPermission(Permission.ADMINISTRATOR)) {
-                                event.getMessage().delete().queue();
+                            if(!event.getMessage().getContentRaw().equalsIgnoreCase("pat me")) {
+                                if(!event.getMember().hasPermission(Permission.ADMINISTRATOR)) {
+                                    event.getMessage().delete().queue();
+                                }
                             }
                         }
                     }
