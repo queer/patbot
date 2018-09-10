@@ -2,6 +2,7 @@ package gg.amy;
 
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDABuilder;
+import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageUpdateEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
@@ -13,9 +14,12 @@ import javax.security.auth.login.LoginException;
  * @since 9/7/18
  */
 @SuppressWarnings("unused")
-public class Patbot {
+public final class Patbot {
     private static final String CHANNEL = System.getenv("CHANNEL");
     private static final String TOKEN = System.getenv("TOKEN");
+    
+    private Patbot() {
+    }
     
     public static void main(final String[] args) throws LoginException, InterruptedException {
         new JDABuilder(AccountType.BOT)
@@ -27,7 +31,8 @@ public class Patbot {
                             return;
                         }
                         if(event.getChannel().getId().equalsIgnoreCase(CHANNEL)) {
-                            if(!event.getMessage().getContentRaw().equalsIgnoreCase("pat me")) {
+                            if(!event.getMessage().getContentRaw().equalsIgnoreCase("pat me")
+                                    && !event.getMember().hasPermission(Permission.ADMINISTRATOR)) {
                                 event.getMessage().delete().queue();
                             } else {
                                 event.getChannel().sendMessage(event.getAuthor().getAsMention() + " *pats*").queue();
@@ -41,7 +46,8 @@ public class Patbot {
                             return;
                         }
                         if(event.getChannel().getId().equalsIgnoreCase(CHANNEL)) {
-                            if(!event.getMessage().getContentRaw().equalsIgnoreCase("pat me")) {
+                            if(!event.getMessage().getContentRaw().equalsIgnoreCase("pat me")
+                                    && !event.getMember().hasPermission(Permission.ADMINISTRATOR)) {
                                 event.getMessage().delete().queue();
                             }
                         }
