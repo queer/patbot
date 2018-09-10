@@ -8,6 +8,8 @@ import net.dv8tion.jda.core.events.message.guild.GuildMessageUpdateEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 import javax.security.auth.login.LoginException;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author samantha
@@ -17,6 +19,7 @@ import javax.security.auth.login.LoginException;
 public final class Patbot {
     private static final String CHANNEL = System.getenv("CHANNEL");
     private static final String TOKEN = System.getenv("TOKEN");
+    private static final List<String> ALLOWED_IDS = Arrays.asList(System.getenv("ALLOWED_IDS").split(","));
     
     private Patbot() {
     }
@@ -32,7 +35,7 @@ public final class Patbot {
                         }
                         if(event.getChannel().getId().equalsIgnoreCase(CHANNEL)) {
                             if(!event.getMessage().getContentRaw().equalsIgnoreCase("pat me")) {
-                                if(!event.getMember().hasPermission(Permission.ADMINISTRATOR) && !event.getAuthor().isBot()) {
+                                if(!ALLOWED_IDS.contains(event.getAuthor().getId())) {
                                     event.getMessage().delete().queue();
                                 }
                             } else {
@@ -48,7 +51,7 @@ public final class Patbot {
                         }
                         if(event.getChannel().getId().equalsIgnoreCase(CHANNEL)) {
                             if(!event.getMessage().getContentRaw().equalsIgnoreCase("pat me")) {
-                                if(!event.getMember().hasPermission(Permission.ADMINISTRATOR) && !event.getAuthor().isBot()) {
+                                if(!ALLOWED_IDS.contains(event.getAuthor().getId())) {
                                     event.getMessage().delete().queue();
                                 }
                             }
