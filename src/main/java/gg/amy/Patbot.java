@@ -32,7 +32,7 @@ public final class Patbot {
                         }
                         if(event.getChannel().getId().equalsIgnoreCase(CHANNEL)) {
                             if(!event.getMessage().getContentRaw().equalsIgnoreCase("pat me")) {
-                                if(!event.getMember().hasPermission(Permission.ADMINISTRATOR)) {
+                                if(!event.getMember().hasPermission(Permission.ADMINISTRATOR) && !event.getAuthor().isBot()) {
                                     event.getMessage().delete().queue();
                                 }
                             } else {
@@ -48,7 +48,7 @@ public final class Patbot {
                         }
                         if(event.getChannel().getId().equalsIgnoreCase(CHANNEL)) {
                             if(!event.getMessage().getContentRaw().equalsIgnoreCase("pat me")) {
-                                if(!event.getMember().hasPermission(Permission.ADMINISTRATOR)) {
+                                if(!event.getMember().hasPermission(Permission.ADMINISTRATOR) && !event.getAuthor().isBot()) {
                                     event.getMessage().delete().queue();
                                 }
                             }
