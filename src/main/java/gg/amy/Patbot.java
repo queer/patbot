@@ -19,7 +19,7 @@ public final class Patbot {
     private static final String CHANNEL = System.getenv("CHANNEL");
     private static final String TOKEN = System.getenv("TOKEN");
     private static final List<String> ALLOWED_IDS = Arrays.asList(System.getenv("ALLOWED_IDS").split(","));
-    private static final String REGEX = "(?i)((pls|plz|plis|please) )?pat me( (pls|plz|plis|please))?";
+    private static final String REGEX = "(?i)((pls|plz|plis|please) )?pa+t me+( (pls|plz|plis|please))?";
     
     private Patbot() {
     }
